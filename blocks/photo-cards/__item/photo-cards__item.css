@@ -8,4 +8,5 @@
   display: flex;
   flex-wrap: wrap;
   row-gap: 25px;
+  justify-content: space-between;
 }
