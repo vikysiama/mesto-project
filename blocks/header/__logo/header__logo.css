@@ -1,0 +1,9 @@
+.header__logo {
+  margin: 0;
+  width: 100%;
+  max-width: 142px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding-bottom: 4.66%;
+}

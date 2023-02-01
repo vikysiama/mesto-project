@@ -1,0 +1,19 @@
+.profile {
+  margin: 0;
+  width: 100%;
+  max-width: 880px;
+  display: flex;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding-top: 62px;
+  column-gap: 30px;
+}
+
+@media screen and (max-width: 655px) {
+  .profile {
+    flex-direction: column;
+    align-items: center;
+    row-gap: 26px;
+  }
+}

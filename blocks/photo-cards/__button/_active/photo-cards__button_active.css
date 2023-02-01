@@ -1,0 +1,4 @@
+.photo-cards__button_active:active {
+  background-image: url(../../../../images/like-active.svg);
+  opacity: 1;
+}
