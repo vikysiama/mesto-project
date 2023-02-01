@@ -7,3 +7,10 @@
   box-sizing: border-box;
   padding-bottom: 4.66%;
 }
+
+@media screen and (max-width: 350px) {
+  .header__logo {
+    max-width: 103.74px;
+    margin-left: 19px;
+  }
+}
