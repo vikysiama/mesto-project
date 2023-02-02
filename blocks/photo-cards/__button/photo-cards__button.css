@@ -16,6 +16,7 @@
   min-height: 19px;
   border: 0;
   outline: none;
+  cursor: pointer;
   opacity: 1;
   transition: opacity 1s linear;
 }

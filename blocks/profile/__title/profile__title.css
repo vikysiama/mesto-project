@@ -4,8 +4,12 @@
   font-size: 42px;
   line-height: 48px;
   font-weight: 500;
-  text-align: center;
   align-self: flex-end;
+  width: 100%;
+  max-width: 294px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 @media screen and (min-width: 320px) and (max-width: 880px){
@@ -14,6 +18,21 @@
       line-height: calc(32.68px + (15.32 * 1.4) * ((100vw - 320px) / 880));
   }
 }
+
+@media screen and (min-width: 655px) and (max-width: 705px) {
+  .profile__title {
+    max-width: 200px;
+  }
+}
+
+@media screen and (max-width: 655px) {
+  .profile__title {
+    max-width: 245px;
+    text-align: center;
+    justify-self: center;
+  }
+}
+
 
 @media screen and (max-width: 320px) {
   .profile__title {

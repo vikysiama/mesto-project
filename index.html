@@ -19,42 +19,42 @@
       <img class="profile__image" src="images/profile_Kusto.jpg" alt="Фото Жак-Ив Кусто">
       <div class="profile__info">
         <h1 class="profile__title">Жак-Ив Кусто</h1>
-        <button class="profile__edit-button" name="Кнопка редактирования"></button>
+        <button class="profile__edit-button" type="button" name="Кнопка редактирования"></button>
         <h2 class="profile__subtitle">Исследователь океана</h2>
       </div>
-      <button  class="profile__add-button" name="Кнопка add"></button>
+      <button  class="profile__add-button" type="button" name="Кнопка add"></button>
     </section>
     <section class="photo-gallery">
       <ul class="photo-cards">
         <li class="photo-cards__item">
           <img class="photo-cards__image" src="images/photo_card_Karachaivo-cherkessia.jpg" alt="Церковь на Горе">
           <h2 class="photo-cards__title">Карачаевск</h2>
-          <button name="Кнопка сердечко" class="photo-cards__button photo-cards__button_active"></button>
+          <button name="Кнопка сердечко" type="button" class="photo-cards__button"></button>
         </li>
         <li class="photo-cards__item">
           <img class="photo-cards__image" src="images/photo_card_mountain_Elbrus.jpg" alt="Гора Эльбрус на закате">
           <h2 class="photo-cards__title">Гора Эльбрус</h2>
-          <button name="Кнопка сердечко" class="photo-cards__button photo-cards__button_active"></button>
+          <button name="Кнопка сердечко" type="button" class="photo-cards__button"></button>
         </li>
         <li class="photo-cards__item">
           <img class="photo-cards__image" src="images/photo_card_Dombay.jpg" alt="Домбай пейзаж">
           <h2 class="photo-cards__title">Домбай</h2>
-          <button name="Кнопка сердечко" class="photo-cards__button photo-cards__button_active"></button>
+          <button name="Кнопка сердечко" type="button" class="photo-cards__button"></button>
         </li>
         <li class="photo-cards__item">
           <img class="photo-cards__image" src="images/photo_card_mountain_Elbrus.jpg" alt="Гора Эльбрус на закате">
           <h2 class="photo-cards__title">Гора Эльбрус</h2>
-          <button name="Кнопка сердечко" class="photo-cards__button photo-cards__button_active"></button>
+          <button name="Кнопка сердечко" type="button" class="photo-cards__button"></button>
         </li>
         <li class="photo-cards__item">
           <img class="photo-cards__image" src="images/photo_card_Dombay.jpg" alt="Домбай пейзаж">
           <h2 class="photo-cards__title">Домбай</h2>
-          <button name="Кнопка сердечко" class="photo-cards__button photo-cards__button_active"></button>
+          <button name="Кнопка сердечко" type="button" class="photo-cards__button"></button>
         </li>
         <li class="photo-cards__item">
           <img class="photo-cards__image" src="images/photo_card_Karachaivo-cherkessia.jpg" alt="Церковь на Горе">
           <h2 class="photo-cards__title">Карачаево-Черкессия</h2>
-          <button name="Кнопка сердечко" class="photo-cards__button photo-cards__button_active"></button>
+          <button name="Кнопка сердечко" type="button" class="photo-cards__button"></button>
         </li>
       </ul>
     </section>
@@ -62,20 +62,18 @@
   <footer class="footer">
     <p class="footer__text">&copy; 2023 Mesto Russia</p>
   </footer>
-  <section class="popup">
+  <div class="popup">
     <div class="popup__container">
-      <button class="popup__close-button" name="Кнопка закрыть"></button>
-      <form class="popup__admin">
+      <button class="popup__close-button"  type="button" name="Кнопка закрыть"></button>
+      <form class="popup__admin" name="profile-form">
         <h2 class="popup__title">Редактировать профиль</h2>
         <fieldset class="popup__contact-info">
-          <label for="name-user" class="popup__label"></label>
-          <input type="text" class="popup__item popup__item_el_name-user" id="name-user" name="name-user" value="Жак-Ив Кусто" placeholder="Имя пользователя" required>
-          <label for="profession" class="popup__label"></label>
-          <input type="text" class="popup__item popup__item_el_profession" id="profession" name="profession" value="Исследователь океана" placeholder="Профессия" required>
-          <button class="popup__save-button" name="Кнопка сохранить">Сохранить</button>
+          <input type="text" class="popup__item popup__item_el_name-user" id="name-user" name="name-user" placeholder="Имя пользователя" required>
+          <input type="text" class="popup__item popup__item_el_profession" id="profession" name="profession" placeholder="Профессия" required>
         </fieldset>
+        <button class="popup__save-button" type="submit" name="Кнопка сохранить">Сохранить</button>
       </form>
     </div>
-  </section>
+  </div>
 </body>
 </html>

@@ -3,15 +3,11 @@
   width: 100%;
   max-width: 358px;
   padding-top: 34px;
-  display: flex;
-  flex-direction: column;
-  row-gap: 54px;
 }
 
 @media screen and (max-width: 655px) {
   .popup__admin {
     max-width: 238px;
     padding-top: 25px;
-    row-gap: 75px;
   }
 }
