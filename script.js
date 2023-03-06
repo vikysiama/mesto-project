@@ -34,3 +34,44 @@ formElement.addEventListener('submit',(evt) => handleFormSubmit(evt, userNamePro
 
 EditButton.addEventListener('click', () => (OpenModalBox(popupEditProfile), copyEditProfileData(userNameProfile, jobProfile)));
 CloseButton.addEventListener('click', ()=> CloseModalBox(popupEditProfile));
+
+const initialCards = [
+  {
+    name: 'Карачаево-Черкессия',
+    link: 'images/photo_card_Karachaivo-cherkessia.jpg'
+  },
+  {
+    name: 'Домбай',
+    link: 'images/photo_card_Dombay.jpg'
+  },
+  {
+    name: 'Гора Эльбрус',
+    link: 'images/photo_card_mountain_Elbrus.jpg'
+  },
+  {
+    name: 'Домбай',
+    link: 'images/photo_card_Dombay.jpg'
+  },
+  {
+    name: 'Гора Эльбрус',
+    link: 'images/photo_card_mountain_Elbrus.jpg'
+  },
+  {
+    name: 'Карачаевск',
+    link: 'images/photo_card_Karachaivo-cherkessia.jpg'
+  }
+];
+
+
+const photoCardTemplate = document.querySelector('#photo-card').content;
+
+function createCard( title, link){
+  const cardItem = photoCardTemplate.querySelector('.photo-cards__item').cloneNode(true);
+  const photoCardsImage = cardItem.querySelector('.photo-cards__image');
+  const photoCardsName =cardItem.querySelector('.photo-cards__title');
+  photoCardsImage.src = link;
+  photoCardsImage.alt = title;
+  photoCardsName.textContent = title;
+
+  return cardItem;
+}
