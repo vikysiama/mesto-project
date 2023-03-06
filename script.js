@@ -24,5 +24,13 @@ function copyEditProfileData(username, profession) {
   jobInput.value = profession.textContent;
 }
 
+function handleFormSubmit(evt, username, profession) {
+  evt.preventDefault();
+  username.textContent = nameInput.value;
+  profession.textContent = jobInput.value;
+  CloseModalBox(popupEditProfile);
+}
+formElement.addEventListener('submit',(evt) => handleFormSubmit(evt, userNameProfile, jobProfile));
+
 EditButton.addEventListener('click', () => (OpenModalBox(popupEditProfile), copyEditProfileData(userNameProfile, jobProfile)));
 CloseButton.addEventListener('click', ()=> CloseModalBox(popupEditProfile));
