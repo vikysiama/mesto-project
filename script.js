@@ -62,7 +62,6 @@ const initialCards = [
   }
 ];
 
-
 const photoCardTemplate = document.querySelector('#photo-card').content;
 
 function createCard( title, link){
@@ -75,3 +74,17 @@ function createCard( title, link){
 
   return cardItem;
 }
+
+const photoCardsItems = document.querySelector('.photo-cards');
+
+function addCard(title, link) {
+  photoCardsItems.prepend(createCard(title, link));
+}
+
+function fillCards() {
+  initialCards.forEach( function (item){
+    addCard(item.name, item.link)
+  })
+}
+
+fillCards();
