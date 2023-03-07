@@ -39,16 +39,29 @@
   <footer class="footer">
     <p class="footer__text">&copy; 2023 Mesto Russia</p>
   </footer>
-  <div class="popup">
+  <div class="popup popup_edit-profile">
     <div class="popup__container">
       <button class="popup__close-button"  type="button" name="Кнопка закрыть"></button>
       <form class="popup__admin" name="profile-form">
         <h2 class="popup__title">Редактировать профиль</h2>
-        <fieldset class="popup__contact-info">
+        <fieldset class="popup__inputs">
           <input type="text" class="popup__item popup__item_el_name-user" id="name-user" name="name-user" placeholder="Имя пользователя" required>
           <input type="text" class="popup__item popup__item_el_profession" id="profession" name="profession" placeholder="Профессия" required>
         </fieldset>
-        <button class="popup__save-button" type="submit" name="Кнопка сохранить">Сохранить</button>
+        <button class="popup__submit-button" type="submit" name="Кнопка сохранить">Сохранить</button>
+      </form>
+    </div>
+  </div>
+  <div class="popup popup_new-place popup_opened">
+    <div class="popup__container">
+      <button class="popup__close-button"  type="button" name="Кнопка закрыть"></button>
+      <form class="popup__admin" name="new-place-form">
+        <h2 class="popup__title">Новое место</h2>
+        <fieldset class="popup__inputs">
+          <input type="text" class="popup__item popup__item_el_title" id="title" name="title" placeholder="Название" required>
+          <input type="text" class="popup__item popup__item_el_link" id="link" name="link" placeholder="Ссылка на картинку" required>
+        </fieldset>
+        <button class="popup__submit-button" type="submit" name="Кнопка создать">Создать</button>
       </form>
     </div>
   </div>

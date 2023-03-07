@@ -1,4 +1,4 @@
-.popup__save-button {
+.popup__submit-button {
   margin: 0;
   padding: 0;
   width: 100%;
@@ -19,17 +19,17 @@
   transition: opacity 1s linear;
 }
 
-.popup__save-button:hover {
+.popup__submit-button:hover {
   opacity: 0.8;
 }
 
 
-.popup__save-button:focus {
+.popup__submit-button:focus {
   outline: none;
 }
 
 @media screen and (max-width: 655px) {
-  .popup__save-button {
+  .popup__submit-button {
     margin-bottom: 25px;
     font-size: 14px;
     line-height: 16.94px;

@@ -1,4 +1,4 @@
-.popup__contact-info {
+.popup__inputs {
   margin: 0;
   width: 100%;
   max-width: 358px;
@@ -11,7 +11,7 @@
 }
 
 @media screen and (max-width: 655px) {
-  .popup__contact-info {
+  .popup__inputs {
     padding-bottom: 45px;
   }
 }

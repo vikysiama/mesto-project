@@ -1,7 +1,7 @@
 const EditButton = document.querySelector('.profile__edit-button');
 const CloseButton = document.querySelector('.popup__close-button');
 
-const popupEditProfile = document.querySelector('.popup');
+const popupEditProfile = document.querySelector('.popup_edit-profile');
 const popupContainer =popupEditProfile.querySelector('.popup__container')
 const formElement = popupContainer.querySelector('.popup__admin');
 
@@ -35,30 +35,57 @@ formElement.addEventListener('submit',(evt) => handleFormSubmit(evt, userNamePro
 EditButton.addEventListener('click', () => (OpenModalBox(popupEditProfile), copyEditProfileData(userNameProfile, jobProfile)));
 CloseButton.addEventListener('click', ()=> CloseModalBox(popupEditProfile));
 
+// const initialCards = [
+//   {
+//     name: 'Карачаево-Черкессия',
+//     link: 'images/photo_card_Karachaivo-cherkessia.jpg'
+//   },
+//   {
+//     name: 'Домбай',
+//     link: 'images/photo_card_Dombay.jpg'
+//   },
+//   {
+//     name: 'Гора Эльбрус',
+//     link: 'images/photo_card_mountain_Elbrus.jpg'
+//   },
+//   {
+//     name: 'Домбай',
+//     link: 'images/photo_card_Dombay.jpg'
+//   },
+//   {
+//     name: 'Гора Эльбрус',
+//     link: 'images/photo_card_mountain_Elbrus.jpg'
+//   },
+//   {
+//     name: 'Карачаевск',
+//     link: 'images/photo_card_Karachaivo-cherkessia.jpg'
+//   }
+// ];
+
 const initialCards = [
   {
-    name: 'Карачаево-Черкессия',
-    link: 'images/photo_card_Karachaivo-cherkessia.jpg'
+    name: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
   },
   {
-    name: 'Домбай',
-    link: 'images/photo_card_Dombay.jpg'
+    name: 'Челябинская область',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
   },
   {
-    name: 'Гора Эльбрус',
-    link: 'images/photo_card_mountain_Elbrus.jpg'
+    name: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
   },
   {
-    name: 'Домбай',
-    link: 'images/photo_card_Dombay.jpg'
+    name: 'Камчатка',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
   },
   {
-    name: 'Гора Эльбрус',
-    link: 'images/photo_card_mountain_Elbrus.jpg'
+    name: 'Холмогорский район',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
   },
   {
-    name: 'Карачаевск',
-    link: 'images/photo_card_Karachaivo-cherkessia.jpg'
+    name: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
 ];
 
