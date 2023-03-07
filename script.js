@@ -1,5 +1,5 @@
 const EditButton = document.querySelector('.profile__edit-button');
-const CloseButton = document.querySelector('.popup__close-button');
+const CloseButton = document.querySelectorAll('.popup__close-button');
 
 const popupEditProfile = document.querySelector('.popup_edit-profile');
 const popupContainer =popupEditProfile.querySelector('.popup__container')
@@ -33,7 +33,7 @@ function handleFormSubmit(evt, username, profession) {
 formElement.addEventListener('submit',(evt) => handleFormSubmit(evt, userNameProfile, jobProfile));
 
 EditButton.addEventListener('click', () => (OpenModalBox(popupEditProfile), copyEditProfileData(userNameProfile, jobProfile)));
-CloseButton.addEventListener('click', ()=> CloseModalBox(popupEditProfile));
+// CloseButton[0].addEventListener('click', ()=> CloseModalBox(popupEditProfile));
 
 // const initialCards = [
 //   {
@@ -115,3 +115,14 @@ function fillCards() {
 }
 
 fillCards();
+
+const popupAddPlace = document.querySelector('.popup_new-place');
+const addButton = document.querySelector('.profile__add-button');
+
+addButton.addEventListener('click', () => OpenModalBox(popupAddPlace));
+// CloseButton.addEventListener('click', ()=> CloseModalBox(popupAddPlace));
+
+for(let i=0; i < CloseButton.length; i++){
+  const popup = CloseButton[i].closest('.popup');
+  CloseButton[i].addEventListener('click', ()=> CloseModalBox(popup));
+}
