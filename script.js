@@ -66,9 +66,13 @@ function createCard( title, link){
   const cardItem = photoCardTemplate.querySelector('.photo-cards__item').cloneNode(true);
   const photoCardsImage = cardItem.querySelector('.photo-cards__image');
   const photoCardsName =cardItem.querySelector('.photo-cards__title');
+  const photoLikeButton = cardItem.querySelector('.photo-cards__like-button');
+
   photoCardsImage.src = link;
   photoCardsImage.alt = title;
   photoCardsName.textContent = title;
+
+  photoLikeButton.addEventListener("click",() => photoLikeButton.classList.toggle('photo-cards__like-button_active'));
 
   return cardItem;
 }

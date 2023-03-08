@@ -1,4 +1,4 @@
-.photo-cards__button {
+.photo-cards__like-button {
   background-image: url(../../../images/photo_like.svg);
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -20,6 +20,6 @@
   opacity: 1;
   transition: opacity 1s linear;
 }
-.photo-cards__button:hover {
+.photo-cards__like-button:hover {
 opacity: 0.5;
 }
