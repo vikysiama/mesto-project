@@ -3,7 +3,7 @@ const CloseButton = document.querySelectorAll('.popup__close-button');
 
 const popupEditProfile = document.querySelector('.popup_edit-profile');
 const popupContainer =popupEditProfile.querySelector('.popup__container')
-const formElement = popupContainer.querySelector('.popup__admin');
+const formEditElement = popupContainer.querySelector('.popup__admin');
 
 const nameInput = document.querySelector('.popup__item_el_name-user');
 const jobInput = document.querySelector('.popup__item_el_profession');
@@ -24,43 +24,14 @@ function copyEditProfileData(username, profession) {
   jobInput.value = profession.textContent;
 }
 
-function handleFormSubmit(evt, username, profession) {
+function handleEditFormSubmit(evt, username, profession) {
   evt.preventDefault();
   username.textContent = nameInput.value;
   profession.textContent = jobInput.value;
   CloseModalBox(popupEditProfile);
 }
-formElement.addEventListener('submit',(evt) => handleFormSubmit(evt, userNameProfile, jobProfile));
-
+formEditElement.addEventListener('submit',(evt) => handleEditFormSubmit(evt, userNameProfile, jobProfile));
 EditButton.addEventListener('click', () => (OpenModalBox(popupEditProfile), copyEditProfileData(userNameProfile, jobProfile)));
-// CloseButton[0].addEventListener('click', ()=> CloseModalBox(popupEditProfile));
-
-// const initialCards = [
-//   {
-//     name: 'Карачаево-Черкессия',
-//     link: 'images/photo_card_Karachaivo-cherkessia.jpg'
-//   },
-//   {
-//     name: 'Домбай',
-//     link: 'images/photo_card_Dombay.jpg'
-//   },
-//   {
-//     name: 'Гора Эльбрус',
-//     link: 'images/photo_card_mountain_Elbrus.jpg'
-//   },
-//   {
-//     name: 'Домбай',
-//     link: 'images/photo_card_Dombay.jpg'
-//   },
-//   {
-//     name: 'Гора Эльбрус',
-//     link: 'images/photo_card_mountain_Elbrus.jpg'
-//   },
-//   {
-//     name: 'Карачаевск',
-//     link: 'images/photo_card_Karachaivo-cherkessia.jpg'
-//   }
-// ];
 
 const initialCards = [
   {
@@ -120,9 +91,26 @@ const popupAddPlace = document.querySelector('.popup_new-place');
 const addButton = document.querySelector('.profile__add-button');
 
 addButton.addEventListener('click', () => OpenModalBox(popupAddPlace));
-// CloseButton.addEventListener('click', ()=> CloseModalBox(popupAddPlace));
 
 for(let i=0; i < CloseButton.length; i++){
-  const popup = CloseButton[i].closest('.popup');
-  CloseButton[i].addEventListener('click', ()=> CloseModalBox(popup));
+  const popupItem = CloseButton[i].closest('.popup');
+  CloseButton[i].addEventListener('click', ()=> CloseModalBox(popupItem));
 }
+
+const popupAddPlaceContainer =popupAddPlace.querySelector('.popup__container')
+const formAddPlaceElement = popupAddPlaceContainer.querySelector('.popup__admin');
+
+const titleInput = document.querySelector('.popup__item_el_title');
+const linkInput = document.querySelector('.popup__item_el_link');
+
+function handleNewPlaceFormSubmit(evt) {
+  evt.preventDefault();
+  const title = titleInput.value;
+  const link = linkInput.value;
+  createCard(title, link);
+  addCard(title, link);
+  CloseModalBox(popupAddPlace);
+  formAddPlaceElement.reset();
+}
+
+formAddPlaceElement.addEventListener('submit',(evt) => handleNewPlaceFormSubmit(evt));
