@@ -67,12 +67,14 @@ function createCard( title, link){
   const photoCardsImage = cardItem.querySelector('.photo-cards__image');
   const photoCardsName =cardItem.querySelector('.photo-cards__title');
   const photoLikeButton = cardItem.querySelector('.photo-cards__like-button');
+  const photoDeleteButton = cardItem.querySelector('.photo-cards__trash-button');
 
   photoCardsImage.src = link;
   photoCardsImage.alt = title;
   photoCardsName.textContent = title;
 
   photoLikeButton.addEventListener("click",() => photoLikeButton.classList.toggle('photo-cards__like-button_active'));
+  photoDeleteButton.addEventListener("click",() => cardItem.remove());
 
   return cardItem;
 }
