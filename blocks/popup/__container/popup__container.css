@@ -9,6 +9,17 @@
   justify-content: center;
 }
 
+.popup__container.popup__container_view-window{
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  max-width: 75vw;
+  max-height: 75vh;
+  border-radius: 0;
+  width: min-content;
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
 @media screen and (max-width: 655px) {
   .popup__container {
     max-width: 282px;
