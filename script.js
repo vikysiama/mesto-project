@@ -19,6 +19,11 @@ function CloseModalBox(popup) {
   popup.classList.toggle('popup_opened');
 }
 
+for(let i=0; i < CloseButton.length; i++){
+  const popupItem = CloseButton[i].closest('.popup');
+  CloseButton[i].addEventListener('click', ()=> CloseModalBox(popupItem));
+}
+
 function copyEditProfileData(username, profession) {
   nameInput.value = username.textContent;
   jobInput.value = profession.textContent;
@@ -109,10 +114,6 @@ const addButton = document.querySelector('.profile__add-button');
 
 addButton.addEventListener('click', () => OpenModalBox(popupAddPlace));
 
-for(let i=0; i < CloseButton.length; i++){
-  const popupItem = CloseButton[i].closest('.popup');
-  CloseButton[i].addEventListener('click', ()=> CloseModalBox(popupItem));
-}
 
 const popupAddPlaceContainer =popupAddPlace.querySelector('.popup__container')
 const formAddPlaceElement = popupAddPlaceContainer.querySelector('.popup__admin');
@@ -129,5 +130,7 @@ function handleNewPlaceFormSubmit(evt) {
 }
 
 formAddPlaceElement.addEventListener('submit',(evt) => handleNewPlaceFormSubmit(evt));
+
+
 
 
