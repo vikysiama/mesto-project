@@ -117,11 +117,13 @@ const formAddPlaceElement = popupAddPlaceContainer.querySelector('.popup__admin'
 const titleInput = document.querySelector('.popup__item_el_title');
 const linkInput = document.querySelector('.popup__item_el_link');
 
-addButton.addEventListener('click', () => openModalBox(popupAddPlace));
+
 
 formEditElement.addEventListener('submit',(evt) => handleEditFormSubmit(evt, userNameProfile, jobProfile));
-editButton.addEventListener('click', () => (openModalBox(popupEditProfile), copyEditProfileData(userNameProfile, jobProfile)));
 formAddPlaceElement.addEventListener('submit',(evt) => handleNewPlaceFormSubmit(evt));
+
+editButton.addEventListener('click', () => (openModalBox(popupEditProfile), copyEditProfileData(userNameProfile, jobProfile)));
+addButton.addEventListener('click', () => openModalBox(popupAddPlace));
 
 for(let i=0; i < closeButton.length; i++){
   const popupItem = closeButton[i].closest('.popup');
