@@ -62,6 +62,16 @@ const initialCards = [
 
 const photoCardTemplate = document.querySelector('#photo-card').content;
 
+const popupImage = document.querySelector('.popup_image');
+const imagePopupImage = popupImage.querySelector('.view-window__image');
+const titlePopupImage = popupImage.querySelector('.view-window__title');
+
+function addInfoPopupImage(link, title) {
+  imagePopupImage.src = link;
+  imagePopupImage.alt = title;
+  titlePopupImage.textContent = title;
+}
+
 function createCard( title, link){
   const cardItem = photoCardTemplate.querySelector('.photo-cards__item').cloneNode(true);
   const photoCardsImage = cardItem.querySelector('.photo-cards__image');
@@ -75,6 +85,7 @@ function createCard( title, link){
 
   photoLikeButton.addEventListener("click",() => photoLikeButton.classList.toggle('photo-cards__like-button_active'));
   photoDeleteButton.addEventListener("click",() => cardItem.remove());
+  photoCardsImage.addEventListener("click",() =>(addInfoPopupImage(link, title), OpenModalBox(popupImage)));
 
   return cardItem;
 }
@@ -118,3 +129,5 @@ function handleNewPlaceFormSubmit(evt) {
 }
 
 formAddPlaceElement.addEventListener('submit',(evt) => handleNewPlaceFormSubmit(evt));
+
+
