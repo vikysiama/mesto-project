@@ -109,10 +109,8 @@ const linkInput = document.querySelector('.popup__item_el_link');
 
 function handleNewPlaceFormSubmit(evt) {
   evt.preventDefault();
-  const title = titleInput.value;
-  const link = linkInput.value;
-  createCard(title, link);
-  addCard(title, link);
+  createCard(titleInput.value, linkInput.value);
+  addCard(titleInput.value, linkInput.value);
   CloseModalBox(popupAddPlace);
   formAddPlaceElement.reset();
 }
