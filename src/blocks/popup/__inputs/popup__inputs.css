@@ -6,12 +6,11 @@
   border: 0;
   display: flex;
   flex-direction: column;
-  row-gap: 30px;
-  padding-bottom: 48px;
+  padding-bottom: 18px;
 }
 
 @media screen and (max-width: 655px) {
   .popup__inputs {
-    padding-bottom: 45px;
+    padding-bottom: 15px;
   }
 }
