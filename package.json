@@ -2,8 +2,7 @@
   "name": "mesto",
   "version": "0.0.1",
   "description": "\"learning project",
-  "main": "src/index.js",
-  "homepage": "https://vikysiama.github.io/mesto-project/",
+  "main": "index.js",
   "scripts": {
     "build": "webpack --mode production",
     "dev": "webpack serve",
@@ -11,6 +10,7 @@
     "deploy": "gh-pages -d build"
   },
   "author": "Viktoria Mzhukina",
+  "homepage": "https://vikysiama.github.io/mesto-project/",
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.21.4",
