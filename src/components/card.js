@@ -1,4 +1,4 @@
-import {closeModalBox, openModalBox} from './modal.js';
+import {openModalBox} from './modal.js';
 
 function addInfoPopupImage(link, title) {
   imagePopupImage.src = link;
@@ -32,13 +32,6 @@ function fillCards() {
   initialCards.forEach( function (item){
     addCard(item.name, item.link)
   })
-}
-function handleNewPlaceFormSubmit(evt) {
-  evt.preventDefault();
-  createCard(titleInput.value, linkInput.value);
-  addCard(titleInput.value, linkInput.value);
-  closeModalBox(popupAddPlace);
-  formAddPlaceElement.reset();
 }
 
 const photoCardsItems = document.querySelector('.photo-cards');
@@ -76,11 +69,8 @@ const popupImage = document.querySelector('.popup_image');
 const imagePopupImage = popupImage.querySelector('.view-window__image');
 const titlePopupImage = popupImage.querySelector('.view-window__title');
 
-const titleInput = document.querySelector('.popup__item_el_title');
-const linkInput = document.querySelector('.popup__item_el_link');
-
 const popupAddPlace = document.querySelector('.popup_new-place');
 const popupAddPlaceContainer =popupAddPlace.querySelector('.popup__container')
 const formAddPlaceElement = popupAddPlaceContainer.querySelector('.popup__admin');
 
-export {fillCards, handleNewPlaceFormSubmit, popupAddPlace, formAddPlaceElement};
+export {fillCards, createCard, addCard, popupAddPlace, formAddPlaceElement};

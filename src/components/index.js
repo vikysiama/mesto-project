@@ -1,7 +1,6 @@
-import {popupParameters, enableValidation} from './validate.js';
-import {openModalBox, closeModalBox} from './modal.js';
-import {closeOverley} from './utils.js';
-import {fillCards, handleNewPlaceFormSubmit, popupAddPlace, formAddPlaceElement} from './card.js';
+import {formParameters, enableValidation, disabledAddButton} from './validate.js';
+import {openModalBox, closeModalBox, closeOverley} from './modal.js';
+import {fillCards, popupAddPlace, formAddPlaceElement, createCard, addCard} from './card.js';
 
 import '../pages/index.css';
 
@@ -51,13 +50,6 @@ function copyEditProfileData(username, profession) {
   jobInput.value = profession.textContent;
 }
 
-function disabledAddButton(inactiveButtonClass) {
-  formAddPlaceElement.reset();
-  const buttonElement = formAddPlaceElement.querySelector(popupParameters.submitButtonSelector);
-  buttonElement.disabled=true;
-  buttonElement.classList.add(inactiveButtonClass);
-}
-
 function handleEditFormSubmit(evt, username, profession) {
   evt.preventDefault();
   username.textContent = nameInput.value;
@@ -65,6 +57,16 @@ function handleEditFormSubmit(evt, username, profession) {
   closeModalBox(popupEditProfile);
 }
 
+function handleNewPlaceFormSubmit(evt) {
+  evt.preventDefault();
+  createCard(titleInput.value, linkInput.value);
+  addCard(titleInput.value, linkInput.value);
+  closeModalBox(popupAddPlace);
+  formAddPlaceElement.reset();
+}
+
+const titleInput = document.querySelector('.popup__item_el_title');
+const linkInput = document.querySelector('.popup__item_el_link');
 
 const editButton = document.querySelector('.profile__edit-button');
 const closeButton = document.querySelectorAll('.popup__close-button');
@@ -84,7 +86,7 @@ formEditElement.addEventListener('submit',(evt) => handleEditFormSubmit(evt, use
 formAddPlaceElement.addEventListener('submit',(evt) => handleNewPlaceFormSubmit(evt));
 
 editButton.addEventListener('click', () => (openModalBox(popupEditProfile), copyEditProfileData(userNameProfile, jobProfile)));
-addButton.addEventListener('click', () => (openModalBox(popupAddPlace), disabledAddButton(popupParameters.inactiveButtonClass)));
+addButton.addEventListener('click', () => (openModalBox(popupAddPlace), disabledAddButton(formParameters.inactiveButtonClass)));
 
 for(let i=0; i < closeButton.length; i++){
   const popupItem = closeButton[i].closest('.popup');
@@ -92,7 +94,7 @@ for(let i=0; i < closeButton.length; i++){
 }
 
 fillCards();
-enableValidation(popupParameters);
+enableValidation(formParameters);
 closeOverley();
 
 

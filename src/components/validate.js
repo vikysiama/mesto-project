@@ -1,14 +1,16 @@
+import {formAddPlaceElement} from './card.js';
+
 const showInputError = (formElement, inputElement, errorMessage, inputErrorClass) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
   inputElement.classList.add(inputErrorClass);
   errorElement.textContent = errorMessage;
-  errorElement.classList.add(popupParameters.errorClass);
+  errorElement.classList.add(formParameters.errorClass);
 }
 
 const hideInputError = (formElement, inputElement, inputErrorClass) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
   inputElement.classList.remove(inputErrorClass);
-  errorElement.classList.remove(popupParameters.errorClass);
+  errorElement.classList.remove(formParameters.errorClass);
   errorElement.textContent = '';
 };
 
@@ -20,9 +22,9 @@ const isValid = (formElement, inputElement) => {
   }
 
   if (!inputElement.validity.valid) {
-    showInputError(formElement, inputElement, inputElement.validationMessage, popupParameters.inputErrorClass);
+    showInputError(formElement, inputElement, inputElement.validationMessage, formParameters.inputErrorClass);
   } else {
-    hideInputError(formElement, inputElement, popupParameters.inputErrorClass);
+    hideInputError(formElement, inputElement, formParameters.inputErrorClass);
   }
 };
 
@@ -43,18 +45,18 @@ const toggleButtonState = (inputList, buttonElement, inactiveButtonClass) => {
 }
 
 const setEventListeners = (formElement) => {
-  const inputList = Array.from(formElement.querySelectorAll(popupParameters.inputSelector));
-  const buttonElement = formElement.querySelector(popupParameters.submitButtonSelector);
+  const inputList = Array.from(formElement.querySelectorAll(formParameters.inputSelector));
+  const buttonElement = formElement.querySelector(formParameters.submitButtonSelector);
   inputList.forEach((inputElement) => {
     inputElement.addEventListener('input', function () {
       isValid(formElement, inputElement);
-      toggleButtonState(inputList, buttonElement, popupParameters.inactiveButtonClass);
+      toggleButtonState(inputList, buttonElement, formParameters.inactiveButtonClass);
     });
   });
 };
 
 const enableValidation = () => {
-  const formList = Array.from(document.querySelectorAll(popupParameters.formSelector));
+  const formList = Array.from(document.querySelectorAll(formParameters.formSelector));
   formList.forEach((formElement) => {
     formElement.addEventListener('submit', (evt) => {
       evt.preventDefault();
@@ -63,8 +65,14 @@ const enableValidation = () => {
   });
 };
 
-const popupParameters = {
-  popupSelector: '.popup',
+function disabledAddButton(inactiveButtonClass) {
+  formAddPlaceElement.reset();
+  const buttonElement = formAddPlaceElement.querySelector(formParameters.submitButtonSelector);
+  buttonElement.disabled=true;
+  buttonElement.classList.add(inactiveButtonClass);
+}
+
+const formParameters = {
   formSelector: '.popup__admin',
   inputSelector: '.popup__item',
   submitButtonSelector: '.popup__submit-button',
@@ -73,4 +81,6 @@ const popupParameters = {
   errorClass: 'popup__item-error_active'
 };
 
-export {popupParameters , enableValidation};
+
+
+export {formParameters, enableValidation, disabledAddButton};

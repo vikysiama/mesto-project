@@ -1,13 +1,33 @@
-import {closewithEscape} from './utils.js';
-
 function openModalBox(popup) {
   popup.classList.add('popup_opened');
-  document.addEventListener('keydown', (evt) => closewithEscape(popup, evt));
+  document.addEventListener('keydown', closewithEscape);
 }
 
 function closeModalBox(popup) {
   popup.classList.remove('popup_opened');
-  document.removeEventListener('keydown', (evt) => closewithEscape(popup, evt));
+  document.removeEventListener('keydown', closewithEscape);
 }
 
-export {openModalBox, closeModalBox};
+const closeOverley = () => {
+  const popupList = Array.from(document.querySelectorAll(popupParameters.popupSelector));
+  popupList.forEach((popupElement) => {
+    popupElement.addEventListener('click', function (evt) {
+      if (evt.currentTarget === evt.target) {
+        closeModalBox(popupElement);
+      }
+    });
+  });
+};
+
+function closewithEscape(evt) {
+  if (evt.key === "Escape") {
+    const openedPopup = document.querySelector('.popup_opened');
+    closeModalBox(openedPopup);
+  }
+}
+
+const popupParameters = {
+  popupSelector: '.popup'
+}
+
+export {openModalBox, closeModalBox, closeOverley};
