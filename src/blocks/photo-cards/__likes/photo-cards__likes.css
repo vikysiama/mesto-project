@@ -1,0 +1,6 @@
+.photo-cards__likes {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  row-gap: 3px;
+}

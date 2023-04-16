@@ -1,3 +1,5 @@
+import {formParameters} from './validate.js';
+
 function openModalBox(popup) {
   popup.classList.add('popup_opened');
   document.addEventListener('keydown', closewithEscape);
@@ -27,7 +29,16 @@ function closewithEscape(evt) {
 }
 
 const popupParameters = {
-  popupSelector: '.popup'
+  popupSelector: '.popup',
 }
 
-export {openModalBox, closeModalBox, closeOverley};
+function renderLoading(form, isLoading) {
+  const buttonElement = form.querySelector(formParameters.submitButtonSelector);
+  if(isLoading) {
+    buttonElement.textContent = "Сохранение..."
+  } else {
+    buttonElement.textContent = "Сохранение"
+  }
+}
+
+export {openModalBox, closeModalBox, closeOverley, popupParameters, renderLoading};

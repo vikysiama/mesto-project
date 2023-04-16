@@ -16,6 +16,8 @@
 @import url(../../src/blocks/photo-cards/__image/photo-cards__image.css);
 @import url(../../src/blocks/photo-cards/__item/photo-cards__item.css);
 @import url(../../src/blocks/photo-cards/__title/photo-cards__title.css);
+@import url(../../src/blocks/photo-cards/__likes/photo-cards__likes.css);
+@import url(../../src/blocks/photo-cards/__count-like/photo-cards__count-like.css);
 @import url(../../src/blocks/photo-cards/__like-button/photo-cards__like-button.css);
 @import url(../../src/blocks/photo-cards/__like-button/_active/photo-cards__like-button_active.css);
 @import url(../../src/blocks/photo-cards/__trash-button/photo-cards__trash-button.css);

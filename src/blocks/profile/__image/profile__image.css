@@ -1,9 +1,83 @@
-.profile__image {
-  margin: 0;
-  border-radius: 100%;
+/* .profile__image::before:hover {
+  background-color: #000;
+  background-position: 50%;
+  border-radius: inherit;
+  content: "";
+  height: 100%;
+  left: 0;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  transition: opacity .3s ease;
   width: 100%;
-  max-width: 120px;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
+} */
+
+ .profile__image {
+  background-image: url('../../../images/profile_Kusto.jpg');
+  position: relative;
+  margin: 0;
+  border-radius: 60px;
+  background-position: 50%;
+  background-size: cover;
+  width: 120px;
+  height: 120px;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+/* .profile__image::after:hover {
+  background: url('../../../images/avatar_button.svg');
+  background-position: 50%;
+  background-repeat: no-repeat;
+  border-radius: inherit;
+  content: "";
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  transform: scale(0);
+  transition: visibility .3s ease,transform .3s ease;
+  visibility: hidden;
+  width: 100%;
+}  */
+
+.profile__image:hover::before,
+.profile__image:focus::before {
+  background-color: rgba(0, 0, 0, 0.8);
+  background-position: 50%;
+  border-radius: inherit;
+  content: "";
+  height: 100%;
+  left: 0;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  transition: opacity 1s ease;
+  width: 100%;
+  animation: show 1s 1;
+  animation-fill-mode: forwards;
+}
+
+.profile__image:hover::after,
+.profile__image:focus::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-image: url('../../../images/avatar_button.svg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  animation: show 1s 1;
+  animation-fill-mode: forwards;
+}
+
+@keyframes show{
+  0%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
 }

@@ -1,5 +1,3 @@
-import {formAddPlaceElement} from './card.js';
-
 const showInputError = (formElement, inputElement, errorMessage, inputErrorClass) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
   inputElement.classList.add(inputErrorClass);
@@ -65,9 +63,9 @@ const enableValidation = () => {
   });
 };
 
-function disabledAddButton(inactiveButtonClass) {
-  formAddPlaceElement.reset();
-  const buttonElement = formAddPlaceElement.querySelector(formParameters.submitButtonSelector);
+function disabledAddButton(form, inactiveButtonClass) {
+  form.reset();
+  const buttonElement = form.querySelector(formParameters.submitButtonSelector);
   buttonElement.disabled=true;
   buttonElement.classList.add(inactiveButtonClass);
 }

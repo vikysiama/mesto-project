@@ -1,6 +1,7 @@
 import {formParameters, enableValidation, disabledAddButton} from './validate.js';
-import {openModalBox, closeModalBox, closeOverley} from './modal.js';
-import {fillCards, popupAddPlace, formAddPlaceElement, createCard, addCard} from './card.js';
+import {openModalBox, closeModalBox, closeOverley, renderLoading} from './modal.js';
+import {popupAddPlace, formAddPlaceElement, createCard, addCard, photoCardsItems} from './card.js';
+import {getInformationAboutUser, getInitialCards, setInformationAboutUser, setInitialCards, setNewAvatar, deleteCard, setLikes} from './api.js';
 
 import '../pages/index.css';
 
@@ -16,6 +17,7 @@ const profileAddButtonImage = new URL('../images/profile_Add-Button.svg', import
 const profileEditButtonImage = new URL('../images/profile_Edit-Button.svg', import.meta.url);
 const profileKustoImage = new URL('../images/profile_Kusto.jpg', import.meta.url);
 const TrashImage = new URL('../images/Trash.svg', import.meta.url);
+const AvatarButtonImage = new URL('../images/avatar_button.svg', import.meta.url);
 
 const InterBlack = new URL('../fonts/Inter/Inter-Black.woff', import.meta.url);
 const InterBlack2 = new URL('../fonts/Inter/Inter-Black.woff2', import.meta.url);
@@ -37,6 +39,7 @@ const whoIsTheGoat = [
   { name: 'profile Edit Button', link: profileEditButtonImage },
   { name: 'profile Kusto', link: profileKustoImage },
   { name: 'Trash', link: TrashImage },
+  { name: 'Avatar Button', link: AvatarButtonImage },
   { name: 'Inter Black', link: InterBlack },
   { name: 'Inter Black 2', link: InterBlack2 },
   { name: 'Inter Medium', link: InterMedium },
@@ -50,27 +53,54 @@ function copyEditProfileData(username, profession) {
   jobInput.value = profession.textContent;
 }
 
-function handleEditFormSubmit(evt, username, profession) {
+function handleEditFormSubmit(evt, nameuser, job) {
   evt.preventDefault();
-  username.textContent = nameInput.value;
-  profession.textContent = jobInput.value;
+  renderLoading(formEditElement, true);
+  const { username, profession } = evt.currentTarget.elements;
+  setInformationAboutUser({
+    name: username.value,
+    about: profession.value
+  });
+  nameuser.textContent = nameInput.value;
+  job.textContent = jobInput.value;
   closeModalBox(popupEditProfile);
 }
 
 function handleNewPlaceFormSubmit(evt) {
   evt.preventDefault();
-  createCard(titleInput.value, linkInput.value);
-  addCard(titleInput.value, linkInput.value);
+  renderLoading(formAddPlaceElement, true);
+  const { title, link } = evt.currentTarget.elements;
+  setInitialCards({
+    name: title.value,
+    link: link.value
+  })
+    .then((card) => {
+      addCard(card, myIdUser)
+    })
+    .catch((err) => {
+      console.log(err);
+    });
   closeModalBox(popupAddPlace);
   formAddPlaceElement.reset();
 }
 
-const titleInput = document.querySelector('.popup__item_el_title');
-const linkInput = document.querySelector('.popup__item_el_link');
+
+function handleAvatarFormSubmit(evt) {
+  evt.preventDefault();
+  renderLoading(formAvatarElement, true);
+  const { link } = evt.currentTarget.elements;
+  setNewAvatar({
+    link: link.value,
+  });
+  addAvatar.style = `background-image: url(${link.value})`;
+  closeModalBox(popupAvatar);
+  formAvatarElement.reset();
+}
 
 const editButton = document.querySelector('.profile__edit-button');
 const closeButton = document.querySelectorAll('.popup__close-button');
 const addButton = document.querySelector('.profile__add-button');
+const addAvatar = document.querySelector('.profile__image');
 
 const popupEditProfile = document.querySelector('.popup_edit-profile');
 const popupContainer =popupEditProfile.querySelector('.popup__container')
@@ -82,19 +112,62 @@ const jobInput = document.querySelector('.popup__item_el_profession');
 const userNameProfile = document.querySelector('.profile__title');
 const jobProfile = document.querySelector('.profile__subtitle');
 
-formEditElement.addEventListener('submit',(evt) => handleEditFormSubmit(evt, userNameProfile, jobProfile));
-formAddPlaceElement.addEventListener('submit',(evt) => handleNewPlaceFormSubmit(evt));
+const popupAvatar = document.querySelector('.popup_new-avatar');
+const popupAvatarContainer =popupAvatar.querySelector('.popup__container')
+const formAvatarElement = popupAvatarContainer.querySelector('.popup__admin');
 
-editButton.addEventListener('click', () => (openModalBox(popupEditProfile), copyEditProfileData(userNameProfile, jobProfile)));
-addButton.addEventListener('click', () => (openModalBox(popupAddPlace), disabledAddButton(formParameters.inactiveButtonClass)));
+formAddPlaceElement.addEventListener('submit',(evt) => handleNewPlaceFormSubmit(evt));
+formEditElement.addEventListener('submit',(evt) => handleEditFormSubmit(evt, userNameProfile, jobProfile));
+formAvatarElement.addEventListener('submit',(evt) => handleAvatarFormSubmit(evt));
+
+addAvatar.addEventListener('click', () => (openModalBox(popupAvatar), renderLoading(formAvatarElement, false), disabledAddButton(formAvatarElement, formParameters.inactiveButtonClass)));
+editButton.addEventListener('click', () => (openModalBox(popupEditProfile), copyEditProfileData(userNameProfile, jobProfile), renderLoading(formEditElement, false)));
+addButton.addEventListener('click', () => (openModalBox(popupAddPlace), renderLoading(formAddPlaceElement, false), disabledAddButton(formAddPlaceElement, formParameters.inactiveButtonClass)));
 
 for(let i=0; i < closeButton.length; i++){
   const popupItem = closeButton[i].closest('.popup');
   closeButton[i].addEventListener('click', ()=> closeModalBox(popupItem));
 }
 
-fillCards();
 enableValidation(formParameters);
 closeOverley();
+
+ export let myIdUser;
+
+function getInfoProfile(username, profession, image) {
+  const name = document.querySelector('.profile__title');
+  const job = document.querySelector('.profile__subtitle');
+  addAvatar.style = `background-image: url(${image})`;
+  name.textContent = username;
+  job.textContent = profession;
+}
+
+
+
+Promise.all([getInformationAboutUser(), getInitialCards()])
+  .then(([data, cards]) => {
+    getInfoProfile(data.name, data.about, data.avatar);
+    myIdUser = data._id;
+    cards.forEach((card) => {
+      photoCardsItems.append(createCard(card, myIdUser))});
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+
+export function addLike(card, putLikes) {
+  setLikes(card)
+    .then(putLikes)
+    .catch((err) => {
+      console.log(err);
+    });
+}
+
+export function deleteCards(card) {
+    deleteCard(card)
+      .catch((err) => {
+        console.log(err);
+      });
+}
 
 
