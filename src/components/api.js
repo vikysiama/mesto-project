@@ -38,7 +38,7 @@ export const setInformationAboutUser = (updatedName, updatedAbout) => {
     }),
     headers: config.headers
   })
-  .then((res) => { return res.json();});
+    .then(getResolve);
 }
 
 export const setInitialCards = (cardTitle, cardLink) => {
@@ -50,7 +50,7 @@ export const setInitialCards = (cardTitle, cardLink) => {
     }),
     headers: config.headers
   })
-  .then((res) => { return res.json();});
+  .then(getResolve);
 }
 
 export const setLikes = (card) => {
@@ -61,7 +61,7 @@ export const setLikes = (card) => {
     }),
     headers: config.headers,
   })
-  .then((res) => { return res.json();});
+  .then(getResolve);
 }
 
 export const deleteCard = (card) => {
@@ -72,7 +72,7 @@ export const deleteCard = (card) => {
     }),
     headers: config.headers
   })
-  .then((res) => { return res.json();});
+  .then(getResolve);
 }
 
 
@@ -84,5 +84,5 @@ export const setNewAvatar = (updatedLink) => {
     }),
     headers: config.headers
   })
-  .then((res) => { return res.json();});
+  .then(getResolve);
 }
