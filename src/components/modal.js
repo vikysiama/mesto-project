@@ -1,5 +1,3 @@
-import {formParameters} from './validate.js';
-
 function openModalBox(popup) {
   popup.classList.add('popup_opened');
   document.addEventListener('keydown', closewithEscape);
