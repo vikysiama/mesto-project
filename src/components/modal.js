@@ -32,12 +32,11 @@ const popupParameters = {
   popupSelector: '.popup',
 }
 
-function renderLoading(form, isLoading) {
-  const buttonElement = form.querySelector(formParameters.submitButtonSelector);
+function renderLoading(button, isLoading, buttonText='Сохранить', loadinfText = 'Сохранение...') {
   if(isLoading) {
-    buttonElement.textContent = "Сохранение..."
+    button.textContent = loadinfText;
   } else {
-    buttonElement.textContent = "Сохранение"
+    button.textContent = buttonText;
   }
 }
 

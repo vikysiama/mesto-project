@@ -1,5 +1,6 @@
 import {openModalBox} from './modal.js';
-import {deleteCards, addLike} from './index.js';
+import {addLike} from './index.js';
+import {deleteCard} from './api.js';
 
 function createCard(dataCard, myIdUser){
   const cardItem = photoCardTemplate.querySelector('.photo-cards__item').cloneNode(true);
@@ -43,12 +44,25 @@ function createCard(dataCard, myIdUser){
     addLike(dataCard, putLikes);
   }
 
+  function checkDeleteCards(card) {
+    deleteCard(card)
+      .then(() => {
+        cardItem.remove();
+      })
+      .catch((err) => {
+        console.log(`Ошибка: ${err}`);
+      })
+      .finally();
+
+    }
 
   if(cardItem.ownerid === myIdUser) {
-    photoDeleteButton.addEventListener("click",() => (cardItem.remove(), deleteCards(dataCard)));
+    photoDeleteButton.addEventListener("click",() => (checkDeleteCards(dataCard)));
   } else {
     photoDeleteButton.remove();
   }
+
+
 
   photoLikeButton.addEventListener("click", () => (handleLikeClick()));
   photoCardsImage.addEventListener("click",() =>(addInfoPopupImage(), openModalBox(popupImage)));
@@ -70,8 +84,4 @@ const imagePopupImage = popupImage.querySelector('.view-window__image');
 const titlePopupImage = popupImage.querySelector('.view-window__title');
 
 
-const popupAddPlace = document.querySelector('.popup_new-place');
-const popupAddPlaceContainer =popupAddPlace.querySelector('.popup__container')
-const formAddPlaceElement = popupAddPlaceContainer.querySelector('.popup__admin');
-
-export {createCard, addCard, popupAddPlace, formAddPlaceElement, photoCardsItems};
+export {createCard, addCard, photoCardsItems};

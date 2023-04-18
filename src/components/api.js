@@ -29,34 +29,28 @@ export const getInitialCards = () => {
     .then(getResolve);
 }
 
-export const setInformationAboutUser = (updatedInfo) => {
+export const setInformationAboutUser = (updatedName, updatedAbout) => {
   return fetch(`${config.baseUrl}/users/me`, {
     method: 'PATCH',
     body: JSON.stringify({
-      name: updatedInfo.name,
-      about: updatedInfo.about
+      name: updatedName,
+      about: updatedAbout
     }),
     headers: config.headers
   })
-  .then((res) => { return res.json();})
-  .catch((err) => {
-    console.log(err);
-  });
+  .then((res) => { return res.json();});
 }
 
-export const setInitialCards = (newCard) => {
+export const setInitialCards = (cardTitle, cardLink) => {
   return fetch(`${config.baseUrl}/cards`, {
     method: 'POST',
     body: JSON.stringify({
-      name: newCard.name,
-      link: newCard.link
+      name: cardTitle,
+      link: cardLink
     }),
     headers: config.headers
   })
-  .then((res) => { return res.json();})
-  .catch((err) => {
-    console.log(err);
-  });
+  .then((res) => { return res.json();});
 }
 
 export const setLikes = (card) => {
@@ -67,10 +61,7 @@ export const setLikes = (card) => {
     }),
     headers: config.headers,
   })
-  .then((res) => { return res.json();})
-  .catch((err) => {
-    console.log(err);
-  });
+  .then((res) => { return res.json();});
 }
 
 export const deleteCard = (card) => {
@@ -81,23 +72,17 @@ export const deleteCard = (card) => {
     }),
     headers: config.headers
   })
-  .then((res) => { return res.json();})
-  .catch((err) => {
-    console.log(err);
-  });
+  .then((res) => { return res.json();});
 }
 
 
-export const setNewAvatar = (updatedAvatar) => {
+export const setNewAvatar = (updatedLink) => {
   return fetch(`${config.baseUrl}/users/me/avatar`, {
     method: 'PATCH',
     body: JSON.stringify({
-      avatar: updatedAvatar.link,
+      avatar: updatedLink,
     }),
     headers: config.headers
   })
-  .then((res) => { return res.json();})
-  .catch((err) => {
-    console.log(err);
-  });
+  .then((res) => { return res.json();});
 }
